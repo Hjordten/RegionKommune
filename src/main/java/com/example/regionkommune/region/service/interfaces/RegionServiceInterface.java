@@ -7,4 +7,10 @@ import java.util.List;
 
 public interface RegionServiceInterface {
     List<Region> getRegioner();
+
+    Region save(Region region);
+
+    Region findRegionAsEntityUsingKode(String kode);
+
+    List<Region> getRegionerFromDatabase();
 }

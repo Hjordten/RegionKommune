@@ -40,6 +40,21 @@ public class RegionImplementation implements RegionServiceInterface {
         return regioner;
     }
 
+    @Override
+    public Region save(Region region) {
+        return regionRepository.save(region);
+    }
+
+    @Override
+    public Region findRegionAsEntityUsingKode(String kode) {
+        return regionRepository.findRegionAsEntityUsingKode(kode);
+    }
+
+    @Override
+    public List<Region> getRegionerFromDatabase() {
+        return regionRepository.findAll();
+    }
+
     private void saveRegioner(List<Region> regioner) {
         regioner.forEach(reg -> regionRepository.save(reg));
     }
