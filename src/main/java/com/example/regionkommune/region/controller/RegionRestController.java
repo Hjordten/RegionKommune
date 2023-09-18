@@ -45,7 +45,7 @@ public class RegionRestController {
     }
 
 
-    @PostMapping("region/indæst")
+    @PostMapping("region/indsæt")
     public ResponseEntity<String> postRegion(@RequestBody Region Region){
             Region savedRegion = regionServiceInterface.save(Region);
             if (savedRegion.getHref() == null || savedRegion.getNavn() == null || savedRegion.getKode() == null){

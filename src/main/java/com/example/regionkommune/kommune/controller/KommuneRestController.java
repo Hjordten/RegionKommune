@@ -81,7 +81,7 @@ public class KommuneRestController {
 
 
 
-    @PostMapping("/kommune/indæst")
+    @PostMapping("/kommune/indsaet")
     public ResponseEntity<String> postKommune(@RequestBody Kommune kommune) {
         Kommune savedKommune = kommuneServiceInterface.save(kommune);
         if (savedKommune.getHref() == null || savedKommune.getNavn() == null || savedKommune.getKode() == null) {
