@@ -2,6 +2,7 @@ package com.example.regionkommune.region.controller;
 
 import com.example.regionkommune.region.model.Region;
 import com.example.regionkommune.region.service.interfaces.RegionServiceInterface;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,19 @@ public class RegionRestController {
 
         return ResponseEntity.ok(regionList);
     }
+
+
+     @GetMapping("/region/find/kode/{kode}")
+    public ResponseEntity<Region> findRegionAsEntityUsingKode(@PathVariable String kode){
+       Region region = regionServiceInterface.findRegionAsEntityUsingKode(kode);
+
+        if (kode.isEmpty()){
+            throw new EntityNotFoundException("No Kommune with desired name exists");
+        } else {
+            return ResponseEntity.ok(region);
+        }
+    }
+
 
     @PostMapping("region/indæst")
     public ResponseEntity<String> postRegion(@RequestBody Region Region){
@@ -63,10 +77,22 @@ public class RegionRestController {
         }
     }
 
+    @DeleteMapping("/region/slet/kode/{kode}")
+    public ResponseEntity<String> deleteRegionUsingKode(@PathVariable String kode){
+        Region foundRegion = regionServiceInterface.findRegionAsEntityUsingKode(kode);
 
-
-
+        if (foundRegion.getKode() == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No region with the desired kode exists");
+        } else {
+            regionServiceInterface.deleteRegionUsingKode(kode);
+            return ResponseEntity.ok("Region succesfully deleted");
+        }
     }
+
+
+
+
+}
 
 
 

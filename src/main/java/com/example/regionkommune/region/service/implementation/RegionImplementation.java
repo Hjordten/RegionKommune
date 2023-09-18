@@ -55,6 +55,11 @@ public class RegionImplementation implements RegionServiceInterface {
         return regionRepository.findAll();
     }
 
+    @Override
+    public void deleteRegionUsingKode(String kode) {
+        regionRepository.deleteById(kode);
+    }
+
     private void saveRegioner(List<Region> regioner) {
         regioner.forEach(reg -> regionRepository.save(reg));
     }

@@ -8,9 +8,11 @@ import java.util.List;
 public interface RegionServiceInterface {
     List<Region> getRegioner();
 
-    Region save(Region region);
-
     Region findRegionAsEntityUsingKode(String kode);
 
     List<Region> getRegionerFromDatabase();
+
+    void deleteRegionUsingKode(String kode);
+
+    Region save(Region region);
 }
