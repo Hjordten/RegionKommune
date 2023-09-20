@@ -84,7 +84,7 @@ public class KommuneRestController {
     @PostMapping("/kommune/indsaet")
     public ResponseEntity<String> postKommune(@RequestBody Kommune kommune) {
         Kommune savedKommune = kommuneServiceInterface.save(kommune);
-        if (savedKommune.getHref() == null || savedKommune.getNavn() == null || savedKommune.getKode() == null) {
+        if (savedKommune == null) {
             return ResponseEntity.ok("Missing required fields");
         } else {
             return ResponseEntity.ok("New kommune successfully saved");
