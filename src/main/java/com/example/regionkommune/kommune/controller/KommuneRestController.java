@@ -15,21 +15,22 @@ import java.util.List;
 @CrossOrigin
 public class KommuneRestController {
 
+    /*------------------------------------------INSTANCES-------------------------------------------------------------*/
+
     @Autowired
     private KommuneServiceInterface kommuneServiceInterface;
 
 
+    /*------------------------------------------GET-------------------------------------------------------------------*/
     @GetMapping("/kommuner")
     public ResponseEntity<List<Kommune>> getKommunerFromDatabase() {
         List<Kommune> kommuneList = kommuneServiceInterface.getKommunerFromDatabase();
         return ResponseEntity.ok(kommuneList);
     }
 
-
     @GetMapping("/kommune/find/kode/{kode}")
     public ResponseEntity<Kommune> findKommuneAsEntityUsingKode(@PathVariable String kode){
         Kommune kommune = kommuneServiceInterface.findKommuneAsEntityUsingKode(kode);
-
         if (kode.isEmpty()){
             throw new EntityNotFoundException("No Kommune with desired name exists");
         } else {
@@ -37,6 +38,7 @@ public class KommuneRestController {
         }
     }
 
+    /*-------------------------------------------------PUT------------------------------------------------------------*/
 
     @PutMapping("/kommune/opdater/kode/{kode}")
     public ResponseEntity<String> updateKommuneWithKode(@PathVariable String kode, @RequestBody Kommune kommune) {
@@ -59,6 +61,8 @@ public class KommuneRestController {
         }
     }
 
+    /*-------------------------------------------------DELETE---------------------------------------------------------*/
+
     @DeleteMapping("/kommune/slet/kode/{kode}")
     public ResponseEntity<String> deleteKommuneUsingKode(@PathVariable String kode) {
         Kommune foundKommune = kommuneServiceInterface.findKommuneAsEntityUsingKode(kode);
@@ -71,10 +75,7 @@ public class KommuneRestController {
         }
     }
 
-
-
-
-
+    /*-------------------------------------------------POST------------------------------------------------------------*/
     @PostMapping("/kommune/indsaet")
     public ResponseEntity<String> postKommune(@RequestBody Kommune kommune) {
         Kommune savedKommune = kommuneServiceInterface.save(kommune);

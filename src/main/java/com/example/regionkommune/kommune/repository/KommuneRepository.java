@@ -8,6 +8,5 @@ public interface KommuneRepository extends JpaRepository<Kommune, String> {
 
     @Query("SELECT k FROM Kommune k WHERE k.kode = :kode")
     Kommune findKommuneAsEntityUsingKode(String kode);
-    @Query("SELECT k FROM Kommune k WHERE k.navn = :navn")
-    Kommune findKommuneAsEntityUsingNavn(String navn);
+
 }

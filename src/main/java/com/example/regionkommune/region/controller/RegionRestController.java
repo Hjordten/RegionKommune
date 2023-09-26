@@ -15,9 +15,12 @@ import java.util.List;
 @CrossOrigin
 public class RegionRestController {
 
+    /*-------------------------------------------------INSTANCES------------------------------------------------------*/
+
     @Autowired
     RegionServiceInterface regionServiceInterface;
 
+    /*------------------------------------------GET ------------------------------------------------------------------*/
 
     @GetMapping("/regioner")
     public ResponseEntity<List<Region>> getRegionerFromDatabase(){
@@ -25,7 +28,6 @@ public class RegionRestController {
 
         return ResponseEntity.ok(regionList);
     }
-
 
      @GetMapping("/region/find/kode/{kode}")
     public ResponseEntity<Region> findRegionAsEntityUsingKode(@PathVariable String kode){
@@ -38,17 +40,7 @@ public class RegionRestController {
         }
     }
 
-
-    @PostMapping("region/indsæt")
-    public ResponseEntity<String> postRegion(@RequestBody Region Region){
-            Region savedRegion = regionServiceInterface.save(Region);
-            if (savedRegion.getHref() == null || savedRegion.getNavn() == null || savedRegion.getKode() == null){
-                return ResponseEntity.ok("Missing required fields");
-            } else {
-                return ResponseEntity.ok("New region succesfully saved");
-            }
-        }
-
+    /*-------------------------------------------------PUT------------------------------------------------------------*/
 
     @PutMapping("/region/opdater/kode/{kode}")
     public ResponseEntity<String> updateRegionWithKode(@PathVariable String kode, @RequestBody Region region) {
@@ -71,6 +63,9 @@ public class RegionRestController {
         }
     }
 
+
+    /*-------------------------------------------------DELETE---------------------------------------------------------*/
+
     @DeleteMapping("/region/slet/kode/{kode}")
     public ResponseEntity<String> deleteRegionUsingKode(@PathVariable String kode){
         Region foundRegion = regionServiceInterface.findRegionAsEntityUsingKode(kode);
@@ -82,6 +77,19 @@ public class RegionRestController {
             return ResponseEntity.ok("Region succesfully deleted");
         }
     }
+
+    /*-------------------------------------------------POST------------------------------------------------------------*/
+
+    @PostMapping("region/indsæt")
+    public ResponseEntity<String> postRegion(@RequestBody Region Region){
+            Region savedRegion = regionServiceInterface.save(Region);
+            if (savedRegion.getHref() == null || savedRegion.getNavn() == null || savedRegion.getKode() == null){
+                return ResponseEntity.ok("Missing required fields");
+            } else {
+                return ResponseEntity.ok("New region succesfully saved");
+            }
+        }
+
 
 
 

@@ -16,16 +16,8 @@ import java.util.List;
 @Service
 public class RegionImplementation implements RegionServiceInterface {
 
-    private final RestTemplate restTemplate;
-
     @Autowired
     private RegionRepository regionRepository;
-
-    private RegionImplementation(RestTemplateBuilder restTemplateBuilder){
-        this.restTemplate = restTemplateBuilder.build();
-    }
-
-
 
     @Override
     public Region save(Region region) {

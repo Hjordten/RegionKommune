@@ -16,5 +16,4 @@ public interface KommuneServiceInterface {
 
     void deleteKommuneUsingKode(String kode);
 
-    Kommune findKommuneAsEntityUsingNavn(String navn);
 }
