@@ -41,7 +41,7 @@ public class DataSyncService {
     @PostConstruct
     public void synchronizeDataOnStartupRegioner() {
         String regionUrl = "https://api.dataforsyningen.dk/regioner";
-        List<Region> lst = new ArrayList<>();
+        //List<Region> lst = new ArrayList<>();
         ResponseEntity<List<Region>> regionResponse =
                 restTemplate.exchange(regionUrl,
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Region>>() {
@@ -54,7 +54,7 @@ public class DataSyncService {
     @PostConstruct
     public void synchronizeDataOnStartupKommuner() {
         String kommuneUrl = "https://api.dataforsyningen.dk/kommuner";
-        List<Kommune> kommuneList = new ArrayList<>();
+        //List<Kommune> kommuneList = new ArrayList<>();
         ResponseEntity<List<Kommune>> kommuneResponse =
                 restTemplate.exchange(kommuneUrl, HttpMethod.GET, null,
                         new ParameterizedTypeReference<List<Kommune>>() {
