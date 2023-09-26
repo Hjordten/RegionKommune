@@ -8,8 +8,6 @@ import java.util.List;
 public interface KommuneServiceInterface {
 
 
-    List<Kommune> getKommuner();
-
     List<Kommune> getKommunerFromDatabase();
 
     Kommune save(Kommune kommune);

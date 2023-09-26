@@ -25,20 +25,7 @@ public class RegionImplementation implements RegionServiceInterface {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    String regionUrl = "https://api.dataforsyningen.dk/regioner";
 
-
-    @Override
-    public List<Region> getRegioner() {
-        List<Region> lst = new ArrayList<>();
-        ResponseEntity<List<Region>> regionResponse =
-                restTemplate.exchange(regionUrl,
-                        HttpMethod.GET, null, new      ParameterizedTypeReference<List<Region>>(){
-                        });
-        List<Region> regioner = regionResponse.getBody();
-        saveRegioner(regioner);
-        return regioner;
-    }
 
     @Override
     public Region save(Region region) {
@@ -60,7 +47,5 @@ public class RegionImplementation implements RegionServiceInterface {
         regionRepository.deleteById(kode);
     }
 
-    private void saveRegioner(List<Region> regioner) {
-        regioner.forEach(reg -> regionRepository.save(reg));
-    }
+
 }

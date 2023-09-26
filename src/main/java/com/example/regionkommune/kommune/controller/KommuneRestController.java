@@ -18,12 +18,6 @@ public class KommuneRestController {
     @Autowired
     private KommuneServiceInterface kommuneServiceInterface;
 
-    @GetMapping("api/kommuner")
-    public ResponseEntity<List<Kommune>> getKommunerFromApi(){
-
-        List<Kommune> kommuneList = kommuneServiceInterface.getKommuner();
-        return ResponseEntity.ok(kommuneList);
-    }
 
     @GetMapping("/kommuner")
     public ResponseEntity<List<Kommune>> getKommunerFromDatabase() {

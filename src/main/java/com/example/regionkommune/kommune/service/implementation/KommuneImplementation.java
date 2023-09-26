@@ -27,23 +27,7 @@ public class KommuneImplementation implements KommuneServiceInterface {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    String kommuneUrl = "https://api.dataforsyningen.dk/kommuner";
 
-    @Override
-    public List<Kommune> getKommuner() {
-        List<Kommune> kommuneList = new ArrayList<>();
-        ResponseEntity<List<Kommune>> kommuneResponse =
-                restTemplate.exchange(kommuneUrl, HttpMethod.GET, null,
-                        new ParameterizedTypeReference<List<Kommune>>() {
-                        });
-        List<Kommune> kommuner = kommuneResponse.getBody();
-        saveKommuner(kommuner);
-        return kommuner;
-    }
-
-    private void saveKommuner(List<Kommune> kommuner) {
-        kommuner.forEach(kommuneRepository::save);
-    }
 
     @Override
     public List<Kommune> getKommunerFromDatabase() {

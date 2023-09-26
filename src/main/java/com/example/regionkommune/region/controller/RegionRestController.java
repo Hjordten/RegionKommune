@@ -18,12 +18,6 @@ public class RegionRestController {
     @Autowired
     RegionServiceInterface regionServiceInterface;
 
-    @GetMapping("api/regioner")
-    public ResponseEntity<Object> getRegioner() {
-        List<Region> listRegioner = regionServiceInterface.getRegioner();
-
-        return ResponseEntity.ok(listRegioner);
-    }
 
     @GetMapping("/regioner")
     public ResponseEntity<List<Region>> getRegionerFromDatabase(){
