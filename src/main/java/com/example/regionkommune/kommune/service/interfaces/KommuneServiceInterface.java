@@ -16,4 +16,5 @@ public interface KommuneServiceInterface {
 
     Kommune save(Kommune kommune);
 
+    Kommune findKommuneAsEntityUsingNavn(String navn);
 }

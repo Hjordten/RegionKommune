@@ -1,5 +1,6 @@
 package com.example.regionkommune.kommune.controller;
 
+import com.example.regionkommune.exception.ResourceNotFoundException;
 import com.example.regionkommune.kommune.model.Kommune;
 import com.example.regionkommune.kommune.service.interfaces.KommuneServiceInterface;
 import com.example.regionkommune.region.model.Region;
@@ -33,6 +34,16 @@ public class KommuneRestController {
         Kommune kommune = kommuneServiceInterface.findKommuneAsEntityUsingKode(kode);
         if (kode.isEmpty()){
             throw new EntityNotFoundException("No Kommune with desired name exists");
+        } else {
+            return ResponseEntity.ok(kommune);
+        }
+    }
+
+    @GetMapping("/Kommune/find/navn/{navn}")
+    public ResponseEntity<Kommune> findKommuneAsEntityUsingNavn(@PathVariable String navn){
+        Kommune kommune = kommuneServiceInterface.findKommuneAsEntityUsingNavn(navn);
+        if (kommune == null){
+            throw new ResourceNotFoundException("ingen kommune med følgende navn eksistere: " + navn);
         } else {
             return ResponseEntity.ok(kommune);
         }

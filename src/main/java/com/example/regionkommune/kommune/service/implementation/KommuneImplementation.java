@@ -30,6 +30,11 @@ public class KommuneImplementation implements KommuneServiceInterface {
         return kommuneRepository.save(kommune);
     }
 
+    @Override
+    public Kommune findKommuneAsEntityUsingNavn(String navn) {
+        return kommuneRepository.findKommuneByNavn(navn);
+    }
+
 
     @Override
     public Kommune findKommuneAsEntityUsingKode(String kode) {
