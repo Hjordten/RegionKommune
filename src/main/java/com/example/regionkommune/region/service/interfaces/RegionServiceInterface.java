@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface RegionServiceInterface {
 
-    Region findRegionAsEntityUsingKode(String kode);
-
     List<Region> getRegionerFromDatabase();
+
+    Region findRegionAsEntityUsingKode(String kode);
 
     void deleteRegionUsingKode(String kode);
 

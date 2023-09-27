@@ -10,10 +10,10 @@ public interface KommuneServiceInterface {
 
     List<Kommune> getKommunerFromDatabase();
 
-    Kommune save(Kommune kommune);
-
     Kommune findKommuneAsEntityUsingKode(String kode);
 
     void deleteKommuneUsingKode(String kode);
+
+    Kommune save(Kommune kommune);
 
 }

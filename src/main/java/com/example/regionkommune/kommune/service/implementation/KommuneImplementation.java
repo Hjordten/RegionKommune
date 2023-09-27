@@ -13,9 +13,12 @@ import java.util.List;
 @Service
 public class KommuneImplementation implements KommuneServiceInterface {
 
+    /*------------------------------------------INSTANCES-------------------------------------------------------------*/
 
     @Autowired
     private KommuneRepository kommuneRepository;
+
+    /*------------------------------------------FUNCTIONS-------------------------------------------------------------*/
 
     @Override
     public List<Kommune> getKommunerFromDatabase() {

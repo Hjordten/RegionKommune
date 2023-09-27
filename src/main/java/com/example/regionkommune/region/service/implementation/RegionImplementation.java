@@ -13,11 +13,16 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class RegionImplementation implements RegionServiceInterface {
 
+    /*------------------------------------------INSTANCES-------------------------------------------------------------*/
+
     @Autowired
     private RegionRepository regionRepository;
+
+    /*------------------------------------------FUNCTIONS-------------------------------------------------------------*/
 
     @Override
     public Region save(Region region) {
