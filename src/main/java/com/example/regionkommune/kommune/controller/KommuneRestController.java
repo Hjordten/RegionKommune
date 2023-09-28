@@ -49,6 +49,32 @@ public class KommuneRestController {
         }
     }
 
+
+    /*-------------------------------------------------DELETE---------------------------------------------------------*/
+    @DeleteMapping("/kommune/slet/kode/{kode}")
+    public ResponseEntity<String> deleteKommuneUsingKode(@PathVariable String kode) {
+        Kommune foundKommune = kommuneServiceInterface.findKommuneAsEntityUsingKode(kode);
+
+        if (foundKommune.getKode() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No kommune with the desired kode exists");
+        } else {
+            kommuneServiceInterface.deleteKommuneUsingKode(kode);
+            return ResponseEntity.ok("Kommune successfully deleted");
+        }
+    }
+
+    /*-------------------------------------------------POST------------------------------------------------------------*/
+
+    @PostMapping("/kommune/indsaet")
+    public ResponseEntity<String> postKommune(@RequestBody Kommune kommune) {
+        Kommune savedKommune = kommuneServiceInterface.save(kommune);
+        if (savedKommune == null) {
+            return ResponseEntity.ok("Missing required fields");
+        } else {
+            return ResponseEntity.ok("New kommune successfully saved");
+        }
+    }
+
     /*-------------------------------------------------PUT------------------------------------------------------------*/
 
     @PutMapping("/kommune/opdater/kode/{kode}")
@@ -71,32 +97,6 @@ public class KommuneRestController {
             }
         }
     }
-
-    /*-------------------------------------------------DELETE---------------------------------------------------------*/
-
-    @DeleteMapping("/kommune/slet/kode/{kode}")
-    public ResponseEntity<String> deleteKommuneUsingKode(@PathVariable String kode) {
-        Kommune foundKommune = kommuneServiceInterface.findKommuneAsEntityUsingKode(kode);
-
-        if (foundKommune.getKode() == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No kommune with the desired kode exists");
-        } else {
-            kommuneServiceInterface.deleteKommuneUsingKode(kode);
-            return ResponseEntity.ok("Kommune successfully deleted");
-        }
-    }
-
-    /*-------------------------------------------------POST------------------------------------------------------------*/
-    @PostMapping("/kommune/indsaet")
-    public ResponseEntity<String> postKommune(@RequestBody Kommune kommune) {
-        Kommune savedKommune = kommuneServiceInterface.save(kommune);
-        if (savedKommune == null) {
-            return ResponseEntity.ok("Missing required fields");
-        } else {
-            return ResponseEntity.ok("New kommune successfully saved");
-        }
-    }
-
 }
 
 
